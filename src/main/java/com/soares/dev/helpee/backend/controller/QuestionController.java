@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.soares.dev.helpee.backend.model.Question;
 import com.soares.dev.helpee.backend.repository.QuestionRepository;
 
-@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api")
 public class QuestionController {

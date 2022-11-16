@@ -23,7 +23,6 @@ import com.soares.dev.helpee.backend.model.Answer;
 import com.soares.dev.helpee.backend.repository.AnswerRepository;
 import com.soares.dev.helpee.backend.repository.QuestionRepository;
 
-@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api")
 public class AnswerController {
@@ -34,7 +33,7 @@ public class AnswerController {
 	@Autowired
 	QuestionRepository questionRepository;
 
-	@GetMapping("/questions/{questionId}/answers")
+	@GetMapping("/answers/{questionId}")
 	public ResponseEntity<List<Answer>> getAllAnswersByQuestionId(@PathVariable(value = "questionId") Long questionId) {
 		if (!questionRepository.existsById(questionId)) {
 			throw new ResourceNotFoundException("Not found Question with id = " + questionId);
@@ -55,7 +54,7 @@ public class AnswerController {
 		}
 	}
 
-	@PostMapping("/questions/{questionId}/answers")
+	@PostMapping("/answers/{questionId}")
 	public ResponseEntity<Answer> createAnswer(@PathVariable(value = "questionId") Long questionId,
 			@RequestBody Answer answerRequest) {
 		Answer answer = questionRepository.findById(questionId).map(question -> {
